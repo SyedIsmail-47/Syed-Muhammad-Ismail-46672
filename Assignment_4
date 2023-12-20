@@ -1,0 +1,625 @@
+#include<iostream>
+using namespace std;
+class Nodec{
+	public:
+	int data;
+	Nodec *next;
+	Nodec(int data)
+	{
+		this->data = data;
+		this->next = NULL;
+	}
+};
+class Stacklinkedlist{
+	public:
+		Nodec *top;
+		int size;
+		StackLinkedList()
+		{
+			top = NULL;
+			size = 0;
+		}
+		
+	void display()
+ 	{
+ 		if (top == NULL)
+ 		{
+ 			return;
+ 		}
+ 		else
+ 		{
+ 			Nodec *current = top;
+ 			while (current != NULL)
+		{
+ 			cout << current->data << " ";
+ 			current = current->next;
+		}
+		cout << endl;
+ }
+ }
+		
+	void push()
+	{
+		int data;
+		cout<<"Enter Number: ";
+		cin>>data;
+		Nodec *newNode = new Nodec(data);
+		newNode->next = top;
+		top = newNode;
+		size++;
+		cout<<"Total Numbers in LinkedList are: "<<endl;
+		display();
+	}
+	
+	int pop()
+	{
+		if (isEmpty())
+	{
+		cout << "Stack is empty" << endl;
+		return -1;
+	}
+	int data = top->data;
+	Nodec *temp = top;
+	top = top->next;
+	delete temp;
+	size--;
+	cout<<"The Popping Number is:" <<data<<endl;
+	cout<<"After Popping the Numbers Left:"<<endl;
+	display();
+}
+
+	int peek()
+	{
+		if (isEmpty())
+	{
+	cout << "Stack is empty" << endl;
+	return -1;
+	}
+	cout<< top->data;
+}
+
+	bool isFull()
+	{
+		return false;
+	}
+	
+	bool isEmpty()
+	{
+		if(top ==NULL)
+		{
+			cout<<"The Stack is Empty"<<endl;
+		}
+	}
+
+void stacklinkedlist(){
+		int select;
+		cout<<"1 for Push Function "<<endl;
+		cout<<"2 for Pop Function "<<endl;
+		cout<<"3 for IsFull Function "<<endl;
+		cout<<"4 for IsEmpty Function "<<endl;
+		cout<<"5 for Peek Function "<<endl;
+		cout<<"6 for ParanthesisBalanced Function"<<endl;
+		cout<<"7 for exit "<<endl; 
+		cin>>select;
+		switch(select)
+		{
+			case 1:
+				system("cls");
+				push();
+			break;
+			case 2:
+				system("cls");
+				pop();
+			break;
+			case 3:
+				system("cls");
+				isFull();
+			break;
+			case 4:
+				system("cls");
+				isEmpty();
+			break;
+			case 5:
+				system("cls");
+				peek();
+			break;
+			case 6:
+				system("cls");
+				//balancedparenthesis();
+			break;
+			case 7:
+				cout<<"Exit "<<endl;
+				goto loop;
+			break;
+		}
+		stacklinkedlist();
+		loop:;
+}
+};
+class Node{
+	public:
+	int data;
+	Node *next;
+	Node(int data)
+	{
+		this->data = data;
+		this->next = NULL;
+	}
+};
+class StackArray{
+	public:
+	int *A;
+	int top;
+	int capacity;
+	StackArray()
+	{
+		int size;
+		cout<<"Enter the size of array:";
+		cin>>size;
+		A = new int[size];
+		top = -1;
+		capacity = size;
+	}
+	~StackArray()
+	{
+		delete[] A;
+	}
+	
+	void push()
+	{
+		int x;
+		if (top == capacity-1)
+	{
+		cout<<"Array is Full"<<endl;
+		return;
+	}
+	cout<<"Enter Number: "<<endl;
+	cin>>x;
+	top++;
+	A[top] = x;
+	cout<<"Array is: "<<endl<<A[x]<<endl;
+}
+
+	int pop()
+	{
+		if (isEmpty())
+	{
+		cout << "Array is Empty"<<endl;
+		return -1;
+	}
+	int x = A[top];
+	top--;
+	cout<<"The Popping Number is "<<x<<endl;
+	}
+	
+	bool isFull()
+	{
+		if(top == capacity - 1){
+			cout<<"The Stack is full"<<endl;
+		}
+		else{
+		cout<<"Not Full"<<endl;
+	}
+	}
+	
+	bool isEmpty()
+	{
+		if(top == -1)
+		{
+			cout<<"The Stack is Empty"<<endl;
+		}
+	}
+	
+	int peek()
+	{
+	if (isEmpty())
+	{
+		cout << "Stack is empty\n";
+		return -1;
+	}
+	cout<<"The Peek Value is: "<<A[top]<<endl;
+	}
+	
+	balancedparenthesis(){
+		int i=0;
+		while(A[i]= '\0' ){
+			if(A[i]=='(' || A[i]=='{' || A[i]=='[')
+			{
+				push();
+			}
+			else if(A[i]==')' || A[i]=='}' || A[i]==']')
+			{
+				if(isEmpty())
+				{
+					return false;
+				}
+				char temp=pop();
+				if(A[i] == ')' && temp!='(' || A[i]=='}' && temp!='{' || A[i]==']' && temp!='[')
+				{
+					return false;
+				}
+			}
+			i++;
+		}
+	}
+	void arraystack(){
+		int select;
+		cout<<"1 for Push Function "<<endl;
+		cout<<"2 for Pop Function "<<endl;
+		cout<<"3 for IsFull Function "<<endl;
+		cout<<"4 for IsEmpty Function "<<endl;
+		cout<<"5 for Peek Function "<<endl;
+		cout<<"6 for ParanthesisBalanced Function"<<endl;
+		cout<<"7 for exit "<<endl; 
+		cin>>select;
+		switch(select)
+		{
+			case 1:
+				system("cls");
+				push();
+			break;
+			case 2:
+				system("cls");
+				pop();
+			break;
+			case 3:
+				system("cls");
+				isFull();
+			break;
+			case 4:
+				system("cls");
+				isEmpty();
+			break;
+			case 5:
+				system("cls");
+				peek();
+			break;
+			case 6:
+				system("cls");
+				balancedparenthesis();
+			break;
+			case 7:
+				cout<<"Exit "<<endl;
+				goto loop;
+			break;
+		}
+		arraystack();
+		loop:;
+}
+};
+class QueueLinkedlist{
+	public:
+		Node *front;
+		Node *rear;
+		int size;
+		QueueLinkedList()
+		{
+			front = NULL;
+			rear = NULL;
+			size = 0;
+		}
+		
+		void display()
+ 		{
+ 			if (rear == NULL)
+ 			{
+ 				cout<<"LinkedList is Empty"<<endl;
+ 				queuelinkedlist();
+ 			}
+ 			else
+ 			{
+ 				Node *current = front;
+ 				while (current != NULL)
+				{
+ 					cout << current->data << " ";
+ 					current = current->next;
+				}	
+			cout << endl;
+ 			}
+ 		}
+		
+		void Enqueue(){
+			int data;
+			cout<<"Enter Number: ";
+			cin>>data;
+			Node *newNode = new Node(data);
+			if(front==NULL){
+				front = newNode;
+				rear = newNode;
+			}
+			else{
+				rear->next= newNode;
+				rear=newNode;
+			}
+			size++;
+			cout<<"The Linkedlist is:"<<endl;
+		display(); 
+		}
+		
+		void Dequeue(){
+			if(front==NULL){
+				cout<<"LinkedList is Empty"<<endl;
+				queuelinkedlist();
+			}
+			Node *temp=front;
+			front=front->next;
+			delete temp;
+			display();
+		}
+		
+		void getFront(){
+			if(front==NULL){
+				cout<<"LinkedList is Empty"<<endl;
+				queuelinkedlist();
+			}
+			cout<<"The Front Number is: "<<front->data;
+			cout<<endl;
+		}
+		
+		void getRear(){
+			if(front==NULL){
+				cout<<"LinkedList is Empty"<<endl;
+				queuelinkedlist();
+			}
+			cout<<"The Rear Number is: "<<rear->data;
+			cout<<endl;
+		}
+		
+		void isEmpty(){
+			if(front==NULL){
+				cout<<"LinkedList is Empty"<<endl;
+			}
+			else{
+				cout<<"Linkedlist is not Empty"<<endl;
+			}
+		}
+		
+		void Size(){
+			cout<<"The size of Linkedlist is: "<<size;
+			cout<<endl;
+		}
+		
+	void reverse(){
+	Node *current=front;
+	Node *previous=NULL;
+	Node *next=NULL;
+	while(current!=NULL){
+		next=current->next;
+		current->next=previous;
+	previous=current;
+		current=next;//=next;
+	}
+	front=previous;
+	cout<<"Reversed Linked list is ";
+	current=front;
+	while(current!=NULL){
+		cout<<current<<"  ";
+		current=current->next;
+	}
+			}
+			
+		void queuelinkedlist(){
+			int select;
+			cout<<"1 for Enqueue"<<endl;
+			cout<<"2 for Dequeue"<<endl;
+			cout<<"3 for Getfront"<<endl;
+			cout<<"4 for Getrear"<<endl;
+			cout<<"5 for isEmpty"<<endl;
+			cout<<"6 for size"<<endl;
+			cout<<"7 for reverse"<<endl;
+			cout<<"8 for exit"<<endl;
+			cin>>select;
+			switch(select){
+				case 1:
+					system("cls");
+					Enqueue();
+				break;
+				case 2:
+					system("cls");
+					Dequeue();
+				break;
+				case 3:
+					system("cls");
+					getFront();
+				break;
+				case 4:
+					system("cls");
+					getRear();
+				break;
+				case 5:
+					system("cls");
+					isEmpty();
+				break;
+				case 6:
+					system("cls");
+					Size();
+				break;
+				case 7:
+					system("cls");
+					reverse();
+				break;
+				case 8:
+					cout<<"Exit"<<endl;
+					goto loop;
+				break;
+			}
+			queuelinkedlist();
+			loop:;
+		}
+};
+class QueueArray{
+	public:
+		int *A;
+		int front;
+		int rear;
+		QueueArray(){
+			int size;
+			cout<<"Enter Size of array: ";
+			cin>>size;
+			A=new int[size];
+			front=0;
+			rear=-1;
+		}
+		
+		void Enqueue(){
+			int x;
+			cout<<"Enter Number: ";
+			cin>>x;
+			rear++;
+			A[rear]=x;
+			cout<<"Array is: "<<endl;
+			for(int i=front;i<=rear;i++){
+				cout<<" "<<A[i];
+			}
+			cout<<endl;
+		}
+		
+		void Dequeue(){
+			int temp;
+			if(rear==-1){
+				cout<<"Array is Empty"<<endl;
+				ArrayQueue();
+			}
+			temp=A[front];
+			front++;
+			cout<<"Array is:"<<endl;
+			for(int i=front;i<=rear;i++){
+				cout<<" "<<A[i];
+			}
+			cout<<endl;
+		}
+		
+		void Getfront(){
+			if(rear==-1){
+				cout<<"Array is Empty"<<endl;
+				ArrayQueue();
+			}
+			cout<<"The Front Element in the Queue is:";
+			cout<<A[front]<<endl;
+		}
+		
+		void Getrear(){
+			if(rear==-1){
+				cout<<"Array is Empty"<<endl;
+				ArrayQueue();
+			}
+			cout<<"The Rear Element in the Queue is:";
+			cout<<A[rear]<<endl;
+		}
+		
+		void isFull(){
+			if(rear=='/0'){
+				cout<<"The Array is Full"<<endl;
+			}
+			else{
+				cout<<"Array is Not Full"<<endl;
+			}
+		}
+		
+		void isEmpty(){
+			if(rear==-1){
+				cout<<"Array is Empty"<<endl;
+			}
+			else{
+				cout<<"Array is Not Empty"<<endl;
+			}
+		}
+		void reverse(){
+//			int *Arr_1 =new int(size);
+			
+			cout<<"Reversed Array is ";
+		for (int i = rear; i >= front; i--){
+				cout<<A[i]<<"  ";
+			}cout<<endl;
+		}		
+		void ArrayQueue(){
+			int select;
+			cout<<"1 for Enqueue"<<endl;
+			cout<<"2 for Dequeue"<<endl;
+			cout<<"3 for Getfront"<<endl;
+			cout<<"4 for Getrear"<<endl;
+			cout<<"5 for isFull"<<endl;
+			cout<<"6 for isEmpty"<<endl;
+			cout<<"7 for reverse"<<endl;
+			cout<<"8 for Exit"<<endl;
+			cin>>select;
+			switch(select){
+				case 1:
+					system("cls");
+					Enqueue();
+				break;
+				case 2:
+					system("cls");
+					Dequeue();
+				break;
+				case 3:
+					system("cls");
+					Getfront();
+				break;
+				case 4:
+					system("cls");
+					Getrear();
+				break;
+				case 5:
+					system("cls");
+					isFull();
+				break;
+				case 6:
+					system("cls");
+					isEmpty();
+				break;
+				case 7:
+					system("cls");
+					reverse();
+				break;
+				case 8:
+					cout<<"Exit"<<endl;
+					goto loop;
+				break;
+			}
+			ArrayQueue();
+			loop:;
+		}
+};
+class MainMenu : public Stacklinkedlist, public StackArray, public QueueLinkedlist, public QueueArray {
+public:
+    MainMenu() {
+        int n;
+        cout << "1. Stack using Linkedlist" << endl;
+        cout << "2. Stack using Array" << endl;
+        cout << "3. Queue using Linkedlist" << endl;
+        cout << "4. Queue using Array" << endl;
+        cout << "5. Exit" << endl;
+        cout << "Choose an option: ";
+        cin >> n;
+
+        switch (n) {
+            case 1:
+            	system("cls");
+                stacklinkedlist();
+                break;
+            case 2:
+            	system("cls");
+                arraystack();
+                break;
+            case 3:
+            	system("cls");
+                queuelinkedlist();
+                break;
+            case 4:
+            	system("cls");
+                ArrayQueue();
+                break;
+            case 5:
+            	system("cls");
+                cout << "Exit" << endl;
+                break;
+            default:
+                cout << "Invalid option" << endl;
+        }
+    }
+};
+int main(){ 
+	MainMenu menu; 
+    return 0;
+	}
